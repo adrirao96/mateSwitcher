@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,12 +48,6 @@ fun MainScreen(
             onClick = onThemeUpdated
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            text = "Dynamic mode",
-            fontSize = 11.sp,
-            fontFamily = FontFamily.Cursive,
-            fontWeight = FontWeight.ExtraBold
-        )
         MateSwitcher(
             darkTheme = dynamicTheme,
             size = 50.dp,
@@ -60,6 +55,13 @@ fun MainScreen(
             rightIcon = Icons.Default.PowerOff,
             leftIcon = Icons.Default.Power,
             onClick = onDynamicUpdated
+        )
+        Text(
+            text = "Dynamic mode",
+            fontSize = 10.sp,
+            fontFamily = FontFamily.Monospace,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.ExtraBold
         )
     }
 }
