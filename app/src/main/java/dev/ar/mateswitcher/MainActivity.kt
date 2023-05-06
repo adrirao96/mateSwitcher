@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dev.ar.mateswitcher.ui.theme.MateSwitcherTheme
+import dev.ar.mateswitcher.ui.theme.components.MateActionBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,25 +24,21 @@ class MainActivity : ComponentActivity() {
             var darkTheme by remember {
                 mutableStateOf(false)
             }
-            MateSwitcherTheme(darkTheme = darkTheme) {
-
+            var dynamicMode by remember {
+                mutableStateOf(false)
+            }
+            MateSwitcherTheme(darkTheme = darkTheme, dynamicColor = dynamicMode) {
+                MateActionBar {
+                    MainScreen(
+                        darkTheme = darkTheme,
+                        dynamicTheme = dynamicMode,
+                        onDynamicUpdated = {
+                            dynamicMode = !dynamicMode
+                        }) {
+                        darkTheme = !darkTheme
+                    }
+                }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MateSwitcherTheme {
-        Greeting("Android")
     }
 }
